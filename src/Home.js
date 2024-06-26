@@ -59,7 +59,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -190,21 +190,25 @@ const Home = () => {
   return (
     <div className="container mx-auto px-4">
       <div className="carousel-container relative w-full max-w-screen-xl mx-auto overflow-hidden shadow-lg mb-8">
-        <div className="carousel flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-          {images.map((image, index) => (
-            <div key={index} className="carousel-item min-w-full relative">
-              <img src={image.src} alt="RSBlooming Banner" className="w-full h-auto object-cover" />
-              <div className="carousel-content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white p-4 bg-black bg-opacity-50 rounded">
-                <h2 className="text-2xl font-bold">{image.title}</h2>
-                <p className="mt-2">{image.tagline}</p>
-                <div className="text-center my-8">
-                  <a href="#services" className="inline-block py-2 px-4 bg-orange-500 text-white font-semibold rounded-lg">Services & Plan</a>
-                </div>
+      <div className="carousel flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        {images.map((image, index) => (
+          <div key={index} className="carousel-item min-w-full relative">
+            <img
+              src={image.src}
+              alt="RSBlooming Banner"
+              className={`w-full h-auto object-cover ${currentIndex === index ? 'zoom-in' : 'zoom-out'}`}
+            />
+            <div className="carousel-content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white p-4 bg-black bg-opacity-50 rounded">
+              <h2 className="text-2xl font-bold">{image.title}</h2>
+              <p className="mt-2">{image.tagline}</p>
+              <div className="text-center my-8">
+                <a href="#services" className="inline-block py-2 px-4 bg-orange-500 text-white font-semibold rounded-lg">Services & Plan</a>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+    </div>
 
       <div className="flex items-center mb-8">
         <div className="circle-container relative w-64 h-64 md:w-96 md:h-96 overflow-hidden rounded-full shadow-lg mr-8">
