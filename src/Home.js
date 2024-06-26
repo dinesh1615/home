@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import './App.css'
 import { FaTasks, FaProjectDiagram, FaIndustry, FaChartLine, FaGlobe, FaUserTie, FaDigitalTachograph, FaCloud, FaDatabase, FaServer } from 'react-icons/fa';
 
 
@@ -404,48 +405,47 @@ const Home = () => {
 
 
 
-<section className="service-style-three py-16">
-  <div className="container mx-auto">
-    <div className="text-center mb-8">
-      <span className="text-lg text-gray-600">WE WORK FOR</span>
-      <h2 className="text-4xl font-bold">Industries We Served</h2>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-  {services2.map((service, index) => (
-    <div 
-      key={index} 
-      className="service-block-two bg-pink-100 p-6 rounded-lg shadow-md hover:bg-white hover:shadow-xl transition-shadow duration-300"
-      style={{
-        backgroundImage: `url(${service.backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="inner-box bg-white bg-opacity-75 p-4 rounded-lg">
-        <h3 className="text-xl font-bold mb-4">
-          <a href={service.link !== '#' ? service.link : undefined}>{service.title}</a>
-        </h3>
-        <div className="image-container mb-4 overflow-hidden">
-          <figure className="image-box transform transition-transform duration-300 ease-in-out">
-            <img 
-              src={service.image} 
-              alt={service.title} 
-              className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover transition-transform duration-300 ease-in-out hover:w-full hover:h-40 hover:rounded-lg" 
-            />
-          </figure>
-        </div>
-        <div className="link-box">
-          <a href={service.link !== '#' ? service.link : undefined} className="text-blue-500">
-            <i className="flaticon-right-arrow-1"></i>
-          </a>
+<section className="py-16">
+      <div className="container mx-auto overflow-hidden">  
+          <div className="text-center mb-8">
+            <span className="text-lg text-gray-600">WE WORK FOR</span>
+            <h2 className="text-4xl font-bold">Industries We Served</h2>
+          </div>
+        <div className="flex animate-scroll">
+          {services2.map((service, index) => (
+            <div 
+              key={index} 
+              className="service-block-two bg-pink-100 p-6 rounded-lg shadow-md hover:bg-white hover:shadow-xl transition-shadow duration-300 flex-none w-64 mx-2"
+              style={{
+                backgroundImage: `url(${service.backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div className="inner-box bg-white bg-opacity-75 p-4 rounded-lg">
+                <h3 className="text-xl font-bold mb-4">
+                  <a href={service.link !== '#' ? service.link : undefined}>{service.title}</a>
+                </h3>
+                <div className="image-container mb-4 overflow-hidden">
+                  <figure className="image-box transform transition-transform duration-300 ease-in-out">
+                    <img 
+                      src={service.image} 
+                      alt={service.title} 
+                      className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover transition-transform duration-300 ease-in-out hover:w-full hover:h-40 hover:rounded-lg" 
+                    />
+                  </figure>
+                </div>
+                <div className="link-box">
+                  <a href={service.link !== '#' ? service.link : undefined} className="text-blue-500">
+                    <i className="flaticon-right-arrow-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  ))}
-</div>
-
-  </div>
-</section>
+    </section>
 
 
 
@@ -485,39 +485,62 @@ const Home = () => {
 
 
 <section className="py-16 bg-gray-100">
-      <div className="container mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold">Office Location</h2>
-          <p className="text-lg text-gray-600">
-            Over 10 Employees working in more than 8 States in India
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Address Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold mb-4">Branch Office</h3>
-            <p className="mb-4">
-            #3-88/3/A , Sree Krishna Arcade , Nizampet, Hyderabad | 500090 TG , INDIA info@amxsol.com | www.amxsol.com | +1(917)396-7061 | +91-8179382764 | +91-4035759443
-            </p>
-            <div className="flex justify-center items-center mb-4">
-             
-              <div className="w-full h-60 bg-gray-300 rounded-lg">
-                
-                <iframe
-                  title="Google Maps"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  style={{ border: 0 }}
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.9736487764285!2d78.38050387429524!3d17.508771299298687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb939b139586ad%3A0x1007a73d33b60bf!2sSree%20Krishna%20Arcade!5e0!3m2!1sen!2sin!4v1719405379952!5m2!1sen!2sin"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
+  <div className="container mx-auto">
+    <div className="text-center mb-8">
+      <h2 className="text-4xl font-bold">Office Locations</h2>
+      <p className="text-lg text-gray-600">
+        Over 10 Employees working in more than 8 States in India and 20 Employees working in American Branch.
+      </p>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Indian Branch Office Section */}
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h3 className="text-xl font-bold mb-4"> Hyderabad Branch Office</h3>
+        <p className="mb-4">
+          #3-88/3/A , Sree Krishna Arcade , Nizampet, Hyderabad | 500090 TG , INDIA Tel: +91-4035759443 | +91-8179382764
+Email: info@amxsol.com
+        </p>
+        <div className="flex justify-center items-center mb-4">
+          <div className="w-full h-60 bg-gray-300 rounded-lg">
+            <iframe
+              title="Google Maps"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              style={{ border: 0 }}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.9736487764285!2d78.38050387429524!3d17.508771299298687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb939b139586ad%3A0x1007a73d33b60bf!2sSree%20Krishna%20Arcade!5e0!3m2!1sen!2sin!4v1719405379952!5m2!1sen!2sin"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </div>
-    </section>
+      
+      {/* American Corporate Office Section */}
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h3 className="text-xl font-bold mb-4">American Corporate Office</h3>
+        <p className="mb-4">
+          AMXSOL LLC, 1000 Northbrook Drive, Suite 100, Trevose, PA 19053 USA 
+          Tel: +1 (215) 268-6168
+          Email: info@amxsol.com    
+        </p>
+        <div className="flex justify-center items-center mb-4">
+          <div className="w-full h-60 bg-gray-300 rounded-lg">
+            <iframe
+              title="Google Maps"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              style={{ border: 0 }}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3065.119646930394!2d-74.96941568461326!3d40.1394449793931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c147ff874f5d17%3A0x2bdf05a91e4a69a8!2s1000%20Northbrook%20Dr%20%23100%2C%20Trevose%2C%20PA%2019053%2C%20USA!5e0!3m2!1sen!2sin!4v1719405412398!5m2!1sen!2sin"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       
 
