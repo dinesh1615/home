@@ -411,34 +411,39 @@ const Home = () => {
       <h2 className="text-4xl font-bold">Industries We Served</h2>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {services2.map((service, index) => (
-        <div 
-          key={index} 
-          className="service-block-two bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" 
-          style={{
-            backgroundImage: `url(${service.backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="inner-box bg-white bg-opacity-75 p-4 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">
-              <a href={service.link !== '#' ? service.link : undefined}>{service.title}</a>
-            </h3>
-            <div className="image-container mb-4 overflow-hidden">
-              <figure className="image-box transform transition-transform duration-300 ease-in-out">
-                <img src={service.image} alt={service.title} className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover transition-transform duration-300 ease-in-out hover:w-full hover:h-40 hover:rounded-lg" />
-              </figure>
-            </div>
-            <div className="link-box">
-              <a href={service.link !== '#' ? service.link : undefined} className="text-blue-500">
-                <i className="flaticon-right-arrow-1"></i>
-              </a>
-            </div>
-          </div>
+  {services2.map((service, index) => (
+    <div 
+      key={index} 
+      className="service-block-two bg-pink-100 p-6 rounded-lg shadow-md hover:bg-white hover:shadow-xl transition-shadow duration-300"
+      style={{
+        backgroundImage: `url(${service.backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="inner-box bg-white bg-opacity-75 p-4 rounded-lg">
+        <h3 className="text-xl font-bold mb-4">
+          <a href={service.link !== '#' ? service.link : undefined}>{service.title}</a>
+        </h3>
+        <div className="image-container mb-4 overflow-hidden">
+          <figure className="image-box transform transition-transform duration-300 ease-in-out">
+            <img 
+              src={service.image} 
+              alt={service.title} 
+              className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover transition-transform duration-300 ease-in-out hover:w-full hover:h-40 hover:rounded-lg" 
+            />
+          </figure>
         </div>
-      ))}
+        <div className="link-box">
+          <a href={service.link !== '#' ? service.link : undefined} className="text-blue-500">
+            <i className="flaticon-right-arrow-1"></i>
+          </a>
+        </div>
+      </div>
     </div>
+  ))}
+</div>
+
   </div>
 </section>
 
@@ -492,20 +497,19 @@ const Home = () => {
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-bold mb-4">Branch Office</h3>
             <p className="mb-4">
-              #H. No: 2-1/105, 3rd Floor, NCL, North Avenue Colony, Kompally, Hyderabad, Telangana, India - 500014.
+            #3-88/3/A , Sree Krishna Arcade , Nizampet, Hyderabad | 500090 TG , INDIA info@amxsol.com | www.amxsol.com | +1(917)396-7061 | +91-8179382764 | +91-4035759443
             </p>
             <div className="flex justify-center items-center mb-4">
-              {/* Placeholder for Google Map */}
+             
               <div className="w-full h-60 bg-gray-300 rounded-lg">
-                {/* You can embed Google Maps iframe here */}
-                {/* Example: Replace with your Google Maps iframe */}
+                
                 <iframe
                   title="Google Maps"
                   width="100%"
                   height="100%"
                   frameBorder="0"
                   style={{ border: 0 }}
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15129.976048407423!2d78.49873275443119!3d17.543207451222977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb90a4f88de5a5%3A0xfde7c0424f12ed0d!2sKompally%2C%20Hyderabad%2C%20Telangana%20500114%2C%20India!5e0!3m2!1sen!2sus!4v1624920285738!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.9736487764285!2d78.38050387429524!3d17.508771299298687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb939b139586ad%3A0x1007a73d33b60bf!2sSree%20Krishna%20Arcade!5e0!3m2!1sen!2sin!4v1719405379952!5m2!1sen!2sin"
                   allowFullScreen
                 ></iframe>
               </div>
