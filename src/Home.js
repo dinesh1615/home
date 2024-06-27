@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css'
 import { FaTasks, FaProjectDiagram, FaIndustry, FaChartLine, FaGlobe, FaUserTie, FaDigitalTachograph, FaCloud, FaDatabase, FaServer } from 'react-icons/fa';
+import one from './one.mp4';
+import two from './two.mp4';
 
 
 const Home = () => {
@@ -10,6 +12,8 @@ const Home = () => {
   const [industrySolutions, setIndustrySolutions] = useState(0);
   const [scrollDirection, setScrollDirection] = useState(1); // 1 for forward, -1 for backward
   const servicesContainerRef = useRef(null);
+
+ 
 
 
   const steps = [
@@ -57,11 +61,23 @@ const Home = () => {
   ];
 
   useEffect(() => {
+    // Add animation to title when currentIndex changes
+    const titles = document.querySelectorAll('.carousel-item h2');
+    titles.forEach(title => {
+      title.classList.remove('animate-fade-in');
+      void title.offsetWidth; // Trigger reflow
+      title.classList.add('animate-fade-in');
+    });
+  }, [currentIndex]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 4000);
     return () => clearInterval(interval);
   }, [images.length]);
+
+  
 
   useEffect(() => {
     const intervalResolved = setInterval(() => {
@@ -81,6 +97,7 @@ const Home = () => {
         setIndustrySolutions((prevCount) => prevCount + 1);
       }
     }, 30);
+    
 
     return () => {
       clearInterval(intervalResolved);
@@ -156,15 +173,18 @@ const Home = () => {
 ];
 
   const reasons = [
-    { title: 'Artificial Intelligence (AI)', description: "Machine Learning (ML), Natural Language Processing (NLP)." },
-    { title: 'Data Analytics', description: "Data Collection, Data Transformation, Data Analysis." },
-    { title: 'Internet of Things (IoT)', description: "Connected Devices, Data Communication, Applications." },
-    { title: 'Mobile Applications', description: "Native Apps, Web Apps, Hybrid Apps." },
-    { title: 'SEO, SEM, SMO, SMM', description: "Goal, Techniques, Benefits." },
-    { title: 'Staffing & Recruitment', description: "Focus, Process, Employer Branding & Development." },
+    { title: 'Artificial Intelligence (AI)', description: "Machine Learning (ML), Natural Language Processing (NLP)." ,p: "A tool"},
+    { title: 'Data Analytics', description: "Data Collection, Data Transformation, Data Analysis.",p: "a" },
+    { title: 'Internet of Things (IoT)', description: "Connected Devices, Data Communication, Applications.",p: "A tool" },
+    { title: 'Mobile Applications', description: "Native Apps, Web Apps, Hybrid Apps.",p: "A tool" },
+    { title: 'SEO, SEM, SMO, SMM', description: "Goal, Techniques, Benefits,Integration,Collaboration." ,p: "A tool"},
+    { title: 'Staffing & Recruitment', description: "Focus, Process, Employer Branding & Development." ,p: "A tool"},
   ];
 
   useEffect(() => {
+
+    
+    
     const servicesContainer = servicesContainerRef.current;
 
     const scrollInterval = setInterval(() => {
@@ -187,28 +207,59 @@ const Home = () => {
     return () => clearInterval(scrollInterval);
   }, [scrollDirection]);
 
+  const [showAll, setShowAll] = useState(false);
+
+  // Function to toggle showAll state
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+    // Scroll to the top of the section when "Load More" is clicked
+    if (window) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Determine which services to display based on showAll state
+  const servicesToShow = showAll ? services2 : services2.slice(0, 4);
+ 
+
+ 
+
   return (
     <div className="container mx-auto px-4">
-      <div className="carousel-container relative w-full max-w-screen-xl mx-auto overflow-hidden shadow-lg mb-8">
-      <div className="carousel flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-        {images.map((image, index) => (
-          <div key={index} className="carousel-item min-w-full relative">
-            <img
-              src={image.src}
-              alt="RSBlooming Banner"
-              className={`w-full h-auto object-cover ${currentIndex === index ? 'zoom-in' : 'zoom-out'}`}
-            />
-            <div className="carousel-content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white p-4 bg-black bg-opacity-50 rounded">
-              <h2 className="text-2xl font-bold">{image.title}</h2>
-              <p className="mt-2">{image.tagline}</p>
-              <div className="text-center my-8">
-                <a href="#services" className="inline-block py-2 px-4 bg-orange-500 text-white font-semibold rounded-lg">Services & Plan</a>
-              </div>
-            </div>
+ <div className="container mx-auto px-4">
+  <div className="carousel-container relative w-full max-w-screen-xl mx-auto overflow-hidden shadow-lg mb-8">
+    <div className="carousel flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+      {images.map((image, index) => (
+        <div key={index} className="carousel-item min-w-full relative">
+          <img
+            src={image.src}
+            alt="RSBlooming Banner"
+            className={`w-full h-auto object-cover ${currentIndex === index ? 'zoom-in' : 'zoom-out'}`}
+          />
+          <div className="carousel-content absolute top-1/4 left-8 text-white p-4 bg-opacity-50 rounded">
+            <h2 className="text-5xl font-bold bg-opacity-70 p-2 rounded animate-fade-in">{image.title}</h2>
+            <p className="text-2xl mt-2 text-gray-700 bg-opacity-70 p-2 rounded">{image.tagline}</p>
+            
+            <div className="text-left my-8">
+  <a 
+    href="#services" 
+    className="inline-block py-2 px-6 bg-orange-500 text-white font-semibold rounded-lg hover:bg-blue-600 hover:text-black transition-colors duration-700 "
+  >
+    Services & Plan
+  </a>
+</div>
+
+
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
+  </div>
+</div>
+
+
+
+
 
       <div className="flex items-center mb-8">
         <div className="circle-container relative w-64 h-64 md:w-96 md:h-96 overflow-hidden rounded-full shadow-lg mr-8">
@@ -219,22 +270,61 @@ const Home = () => {
           </div>
         </div>
         <div className="flex-1">
-          <h1 className="text-4xl font-bold">20 Years Experience</h1>
+          
+
+        <div className="flex items-center justify-center w-full">
+      <div className="flex-1 border-b border-black mx-4"></div>
+      <h1 className="text-4xl font-bold font-cinzel">20 Years Experience</h1>
+      <div className="flex-1 border-b border-black mx-4"></div>
+    </div>
+
+
           <p className="mt-4">Handling tough SAP Work tasks. Giving Futures to your Business not Just, Let's Grow Together Giving wings to financial dreams.</p>
-          <h2 id="about" className="text-2xl font-semibold mt-8">About Us</h2>
+          <div className="flex items-center justify-center w-full">
+          <h2 id="about" className="text-4xl font-semi-bold mt-8 font-cinzel">About Us</h2>
+          <div className="flex-1 border-b border-black mx-4 mt-8"></div>
+          </div>
           <h3 className="text-2xl font-semibold mt-8">Experts in Providing SAP Implementation Solutions.</h3>
-          <ul className="mt-4">
-            <li className="text-lg">SAP Business One</li>
-            <li className="text-lg">SAP Business One On HANA</li>
-          </ul>
+          
+          
+          <ul className="mt-4 space-y-4">
+  <li className="flex items-center text-2xl text-gray-800 hover:text-blue-600 transition duration-200 ease-in-out transform hover:scale-105">
+    <svg className="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+    SAP Business One
+  </li>
+  <li className="flex items-center text-2xl text-gray-700 hover:text-blue-500 transition duration-200 ease-in-out transform hover:scale-105">
+    <svg className="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+    SAP Business One On HANA
+  </li>
+</ul>
+
+
+
           <p className="mt-4">RSBlooming, a leading SAP Business Partner, empowers small and mid-sized businesses worldwide. Our headquarters are in Hyderabad, India, but we serve clients globally. We specialize in innovative IT solutions that optimize your operations and drive sustainable growth...</p>
-          <a href="#more-about-us" className="inline-block mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg">More About Us</a>
+          
+          <a
+      href="#more-about-us"
+      className="inline-block mt-4 py-2 px-4 bg-orange-500 text-white font-semibold rounded-lg relative overflow-hidden transition duration-900 ease-in-out transform hover:scale-105 focus:scale-105 focus:outline-none"
+    >
+      <span className="absolute left-0 top-0 w-full h-full bg-blue-600 opacity-0 transition duration-300 ease-in-out transform hover:opacity-100"></span>
+      <span className="relative z-10">More About Us</span>
+    </a>
+
         </div>
       </div>
 
       <section className="my-8">
         <div className="text-center">
-          <h2 className="text-3xl font-semibold">Numbers speak for themselves</h2>
+          
+          <div className="flex items-center justify-center w-full">
+      <div className="flex-1 border-b border-black mx-4"></div>
+      <h2 className="text-4xl font-bold font-cinzel">Numbers speak for themselves</h2>
+      <div className="flex-1 border-b border-black mx-4"></div>
+    </div>
           <p className="mt-4">Here's What We Achieved So Far</p>
         </div>
         <div className="mt-2 flex items-center justify-center space-x-6">
@@ -257,7 +347,14 @@ const Home = () => {
       </section>
 
   <section className="my-8 text-center">
-  <h2 className="text-3xl font-semibold mb-4">Our Services</h2>
+ 
+
+  <div className="flex items-center justify-center w-full">
+      <div className="flex-1 border-b border-black mx-4"></div>
+      <h2 className="text-3xl font-semibold font-cinzel mx-4">Our Services</h2>
+      <div className="flex-1 border-b border-black mx-4"></div>
+    </div>
+
   <div ref={servicesContainerRef} className="mt-6 flex overflow-x-auto space-x-4 p-4">
     {services.map((service, index) => (
       <div key={index} className={`service-card flex-shrink-0 w-80 bg-white overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-t-4 border-${service.color}`}>
@@ -284,33 +381,55 @@ const Home = () => {
 
 
 
-<section id="growth" className="py-16 bg-blue-100">
+<section id="growth" className="py-16 bg-blue-200">
   <div className="container mx-auto px-4 flex flex-wrap md:flex-nowrap">
     
     {/* Left Column - Our Growth */}
-    <div className="w-full md:w-2/3 mb-8 md:mb-0 md:mr-4 relative">
+    <div className="w-full md:w-2/3 mb-8 md:mb-0 md:mr-4 relative  ">
   <div className="bg-white rounded-lg shadow-md p-8 text-center">
-    <h2 className="text-4xl font-bold mb-4">Our Growth</h2>
+  
+    <div className="flex items-center justify-center w-full">
+      <div className="flex-1 border-b border-black mx-4 mb-4"></div>
+      <h2 className="text-4xl font-bold font-cinzel mx-4 mb-4">Our Growth</h2>
+      <div className="flex-1 border-b border-black mx-4 mb-4"></div>
+    </div>
+
     <p className="text-xl text-gray-600">Thinking Beyond Ordinary Strategies</p>
     <p className="mt-4 text-lg text-gray-700">
       Analyze current trends in the SAP & ERP and IT solutions market to identify new growth opportunities.
     </p>
     <div className="mt-8">
-      <a href="#growth" className="inline-block bg-blue-500 text-white text-lg font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-blue-600 transition duration-300">
-        Know More
-      </a>
+   
+
+
+    <a
+      href="#growth"
+      className="inline-block bg-orange-500 text-lg font-semibold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 focus:scale-105 focus:outline-none transition duration-500 ease-in-out relative overflow-hidden hover:bg-blue-500"
+    >
+     
+      Know More
+    </a>
+ 
+
+
     </div>
   </div>
   
   {/* Animated GIFs */}
-  <div className="absolute bottom-0 right-0 left-0 flex justify-center mt-8">
-    <div className="w-1/3">
-      <img src="/animated-gif-1.gif" alt="Animation 1" className="w-full" />
+  <div className="absolute bottom--0.5 right-0 left-0 flex justify-center pt-4">
+      <div className="w-1/3 mr-10">
+        <video className="max-w-full h-auto "  autoPlay loop muted>
+          <source src={one} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div className="w-1/3 ml-10">
+        <video className="max-w-full h-auto"  autoPlay loop muted>
+          <source src={two} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
-    <div className="w-1/3">
-      <img src="/animated-gif-2.gif" alt="Animation 2" className="w-full" />
-    </div>
-  </div>
 </div>
 
     
@@ -321,7 +440,13 @@ const Home = () => {
         {/* Mission Card */}
         <div className="bg-white rounded-lg shadow-md p-6 flex items-center">
           <div className="flex-grow">
-            <h3 className="text-xl font-bold mb-4">Mission</h3>
+            
+
+            <div className="flex items-center justify-center w-full">
+      <div className="flex-1 border-b border-black mx-4"></div>
+      <h3 className="text-xl font-bold font-cinzel mx-4">Mission</h3>
+      <div className="flex-1 border-b border-black mx-4"></div>
+    </div>
             <p className="text-gray-700 mb-4">
               To revolutionize business management through SAP Business One solutions delivering tailored implementations.
             </p>
@@ -335,7 +460,13 @@ const Home = () => {
         {/* Vision Card */}
         <div className="bg-white rounded-lg shadow-md p-6 flex items-center">
           <div className="flex-grow">
-            <h3 className="text-xl font-bold mb-4">Vision</h3>
+            
+            <div className="flex items-center justify-center w-full">
+      <div className="flex-1 border-b border-black mx-4"></div>
+      <h3 className="text-xl font-bold font-cinzel mx-4">Vision</h3>
+      <div className="flex-1 border-b border-black mx-4"></div>
+    </div>
+
             <p className="text-gray-700 mb-4">
               To be the catalyst for business innovation and growth recognized globally for our unwavering dedication to client satisfaction.
             </p>
@@ -360,8 +491,23 @@ const Home = () => {
 
 
     
-<h2 id="why-choose-us" className="text-4xl font-semibold text-center mt-12 mb-8">Why Choose Us?</h2>
-<h4 className="text-3xl font-semibold text-center mb-4">Digital Transformation with Services</h4>
+
+
+
+
+<div className="flex items-center justify-center w-full">
+      <div className="flex-1 border-b border-black mx-4"></div>
+      <h2 id="why-choose-us" className="text-4xl font-semibold text-center mt-12 mb-10 mx-4 font-cinzel">Why Choose Us?</h2>
+     <div className="flex-1 border-b border-black mx-4"></div>
+
+     
+    </div>
+    <div  className="flex items-center justify-center w-full">
+   <div className="flex-1 border-b border-black mx-4"></div>
+          <h4 className="text-3xl font-semibold text-center mb-4 font-cinzel">Digital Transformation with Services</h4>
+      <div className="flex-1 border-b border-black mx-4"></div>
+    </div>
+
 <section className="relative py-16">
   {/* Background Text */}
   <div className="absolute inset-0 flex justify-center items-center z-0" style={{ top: '90%' }}>
@@ -378,9 +524,12 @@ const Home = () => {
     <div className="col-span-2 flex flex-col justify-end md:justify-center lg:justify-start">
       <div className="grid grid-cols-1 gap-4">
         {reasons.slice(0, 3).map((reason, index) => (
-          <div key={index} className="why-choose-us-card p-2 md:p-3 border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+          <div key={index} className="why-choose-us-card p-2 md:p-3 border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 relative overflow-hidden mb-10">
+            <div className="overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white">
+              <p className="text-xs md:text-2xl bg-black px-4 text-center ">{reason.description}</p>
+            </div>
             <h3 className="text-base md:text-lg font-bold">{reason.title}</h3>
-            <p className="text-xs md:text-sm">{reason.description}</p>
+            <p className="text-xs md:text-sm">{reason.p}</p>
           </div>
         ))}
       </div>
@@ -394,12 +543,15 @@ const Home = () => {
     </div>
 
     {/* Right Corner Grid - 2 Columns */}
-    <div className="col-span-2 flex flex-col justify-start md:justify-center lg:justify-end">
+    <div className="col-span-2 flex flex-col justify-start md:justify-center lg:justify-end ">
       <div className="grid grid-cols-1 gap-4">
         {reasons.slice(3).map((reason, index) => (
-          <div key={index} className="why-choose-us-card p-2 md:p-3 border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+          <div key={index} className="why-choose-us-card p-2 md:p-3 border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 relative overflow-hidden mb-10">
+            <div className="overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white">
+              <p className="text-xs md:text-2xl px-4 text-center bg-black">{reason.description}</p>
+            </div>
             <h3 className="text-base md:text-lg font-bold">{reason.title}</h3>
-            <p className="text-xs md:text-sm">{reason.description}</p>
+            <p className="text-xs md:text-sm">{reason.p}</p>
           </div>
         ))}
       </div>
@@ -409,17 +561,21 @@ const Home = () => {
 
 
 
+
+
+
+
 <section className="py-16">
-      <div className="container mx-auto overflow-hidden">  
-          <div className="text-center mb-8">
-            <span className="text-lg text-gray-600">WE WORK FOR</span>
-            <h2 className="text-4xl font-bold">Industries We Served</h2>
-          </div>
-        <div className="flex animate-scroll">
-          {services2.map((service, index) => (
-            <div 
-              key={index} 
-              className="service-block-two bg-pink-100 p-6 rounded-lg shadow-md hover:bg-white hover:shadow-xl transition-shadow duration-300 flex-none w-64 mx-2"
+      <div className="container mx-auto overflow-hidden">
+        <div className="text-center mb-8">
+          <span className="text-lg text-gray-600">WE WORK FOR</span>
+          <h2 className="text-4xl font-bold">Industries We Served</h2>
+        </div>
+        <div className="flex flex-wrap justify-center">
+          {servicesToShow.map((service, index) => (
+            <div
+              key={index}
+              className="service-block-two bg-pink-100 p-6 rounded-lg shadow-md hover:bg-white hover:shadow-xl transition-shadow duration-300 flex-none w-full md:w-64 lg:w-64 mx-2 mb-4"
               style={{
                 backgroundImage: `url(${service.backgroundImage})`,
                 backgroundSize: 'cover',
@@ -432,10 +588,10 @@ const Home = () => {
                 </h3>
                 <div className="image-container mb-4 overflow-hidden">
                   <figure className="image-box transform transition-transform duration-300 ease-in-out">
-                    <img 
-                      src={service.image} 
-                      alt={service.title} 
-                      className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover transition-transform duration-300 ease-in-out hover:w-full hover:h-40 hover:rounded-lg" 
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover transition-transform duration-300 ease-in-out hover:w-full hover:h-40 hover:rounded-lg"
                     />
                   </figure>
                 </div>
@@ -448,9 +604,18 @@ const Home = () => {
             </div>
           ))}
         </div>
+        {!showAll && (
+          <div className="text-center mt-8">
+            <button
+              onClick={toggleShowAll}
+              className="py-2 px-6 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
     </section>
-
 
 
 
@@ -491,7 +656,14 @@ const Home = () => {
 <section className="py-16 bg-gray-100">
   <div className="container mx-auto">
     <div className="text-center mb-8">
-      <h2 className="text-4xl font-bold">Office Locations</h2>
+
+      
+    <div  className="flex items-center justify-center w-full">
+   <div className="flex-1 border-b border-yellow-900 mx-4"></div>
+   <h2 className="text-4xl font-bold font-cinzel">Office Locations</h2>
+      <div className="flex-1 border-b border-yellow-900 mx-4"></div>
+    </div>
+
       <p className="text-lg text-gray-600">
         Over 10 Employees working in more than 8 States in India and 20 Employees working in American Branch.
       </p>

@@ -4,7 +4,16 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'dancing': ['Dancing Script', 'cursive'],
+    
+        'great-vibes': ['Great Vibes', 'cursive'],
+        'pacifico': ['Pacifico', 'cursive'],
+        'lobster': ['Lobster', 'cursive'],
+        'cinzel': ['Cinzel', 'serif'],
+      },
+    },
   },
   plugins: [],
 }
